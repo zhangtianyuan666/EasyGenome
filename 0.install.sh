@@ -3,10 +3,9 @@
     # Update更新时间: 2025-10-27
     # Version版本: 1.0
 
-
-# 01.数据下载与解压  Data download and decompression
+#####################01.数据下载与解压  #####################
+###############Data download and decompression##############
 #下载，解压，删除压缩包 Download, decompress, and delete the compressed package
-
 wget -c  -O /data6/zhangtianyuan/Pipeline/EasyGenome/data.tar.gz ftp://download.nmdc.cn/Easygenome/data.tar.gz   #下载测试数据到指定目录，注意修改/data6/zhangtianyuan/Pipeline/EasyGenome/为本服务器上的目录 #Download test data to the specified directory, please make sure to modify/data6/zhangtianyuan/Pipeline/EasyGenome/to the directory on this server
 tar -zxvf data.tar.gz #解压目录 Unzip directory
 rm data.tar.gz #删除压缩包 Delete compressed package
@@ -20,9 +19,8 @@ tar -zxvf Public.tar.gz #解压目录 Unzip directory
 rm Public.tar.gz  #删除压缩包 Delete compressed package
 
 
-#无root权限安装singularity      
-#Installing singularity without root privileges
-
+#####################02.无root权限安装singularity#####################  
+##############Installing singularity without root privileges#########
 #下载GO并安装  Download GO and install it
 #进到官网下载最新Linux版本安装，官网：https://go.dev/dl/在服务器上用wget工具下载或者手动进官网下载再传到服务器上都可
 wget  https://go.dev/dl/go1.25.3.linux-amd64.tar.gz #下载软件压缩包Download the software compressed package
@@ -50,15 +48,17 @@ apt-get install libseccomp-dev，
 #安装完后再运行：
 ./mconfig --prefix=./
 
-
 #mconfig运行完成后按照提示依次运行 After mconfig is finished, follow the prompts to run
 cd /opt/soft/singularity-ce-4.3.4/builddir #进builddir目录  Enter the builddir directory 
 make #编译 compile
 make install  #安装 Install
  
  
-#####################使用Root安装singularity##################
-####################Install singularity using Root############
+#####################03.使用Root安装singularity##################
+####################Install singularity using Root##############
+#注意：如果上述02步骤无法安装，则使用本步骤
+#NOTICE:If the above step 02 cannot be installed, use this step
+
 #GO安装同上 GO installation is the same as above
 
 #安装singularity参考官网：https://docs.sylabs.io/guides/latest/user-guide/quick_start.html#download
