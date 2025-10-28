@@ -6,7 +6,7 @@
 #####################01.数据下载与解压  #####################
 ###############Data download and decompression##############
 ```bash
-#下载，解压，删除压缩包 Download, decompress, and delete the compressed package
+# 下载，解压，删除压缩包 Download, decompress, and delete the compressed package
 wget -c  -O /data6/zhangtianyuan/Pipeline/EasyGenome/data.tar.gz ftp://download.nmdc.cn/Easygenome/data.tar.gz   #下载测试数据到指定目录，注意修改/data6/zhangtianyuan/Pipeline/EasyGenome/为本服务器上的目录 #Download test data to the specified directory, please make sure to modify/data6/zhangtianyuan/Pipeline/EasyGenome/to the directory on this server
 tar -zxvf data.tar.gz #解压目录 Unzip directory
 rm data.tar.gz #删除压缩包 Delete compressed package
@@ -14,9 +14,19 @@ rm data.tar.gz #删除压缩包 Delete compressed package
 wget -c -O /data6/zhangtianyuan/Pipeline/EasyGenome/ ftp://download.nmdc.cn/Easygenome/input.tar.gz #下载准备数据、示例数据 Download preparation data and sample data 
 tar -zxvf input.tar.gz #解压目录 Unzip directory
 rm input.tar.gz #删除压缩包 Delete compressed package
+
 wget -c -O /data6/zhangtianyuan/Pipeline/EasyGenome/ ftp://download.nmdc.cn/Easygenome/Public.tar.gz #下载软件、数据库 Download software and database 
 tar -zxvf Public.tar.gz #解压目录 Unzip directory
 rm Public.tar.gz  #删除压缩包 Delete compressed package
+
+# Public目录包含了数据库，软件，镜像和脚本 
+  The Public directory contains databases, software, container images, and scripts.
+
+# input目录存放比较基因组和泛基因组分析的示例数据
+  The input directory stores example data for comparative genomics and pan-genome analysis.
+
+#data目录存放测试数据，数据来源于Pseudomonas sp. KK18 (PRJNA1079050);其中, SRR32313567.nanopore.fastq.gz为纳米孔长读长测序数据;SRR32313567_R1.fastq.gz和SRR32313567_R2.fastq.gz为短读长测序数据
+  The data directory contains test data sourced from Pseudomonas sp. KK18 (PRJNA1079050). SRR32313567.nanopore.fastq.gz is Nanopore long-read data. SRR32313567_R1.fastq.gz and SRR32313567_R2.fastq.gz are short-read data.
 ```
 # 以上3个文件，内测时，若无法下载，可从/data6/zhangtianyuan/Pipeline/EasyGenome拷贝
 
