@@ -29,6 +29,7 @@ Update：2025/10/27
 
 # Install (安装)
 #####################01.数据下载与解压  #####################
+
 ###############Data download and decompression##############
 ```bash
 #下载，解压，删除压缩包 Download, decompress, and delete the compressed package
@@ -39,12 +40,13 @@ rm data.tar.gz #删除压缩包 Delete compressed package
 wget -c -O /data6/zhangtianyuan/Pipeline/EasyGenome/ ftp://download.nmdc.cn/Easygenome/input.tar.gz #下载准备数据、示例数据 Download preparation data and sample data 
 tar -zxvf input.tar.gz #解压目录 Unzip directory
 rm input.tar.gz #删除压缩包 Delete compressed package
+
 wget -c -O /data6/zhangtianyuan/Pipeline/EasyGenome/ ftp://download.nmdc.cn/Easygenome/Public.tar.gz #下载软件、数据库 Download software and database 
 tar -zxvf Public.tar.gz #解压目录 Unzip directory
 rm Public.tar.gz  #删除压缩包 Delete compressed package
-```
-# 以上3个文件，内测时，若无法下载，可从/data6/zhangtianyuan/Pipeline/EasyGenome拷贝
 
+# 以上3个文件，内测时，若无法下载，可从/data6/zhangtianyuan/Pipeline/EasyGenome拷贝
+```
 
 #####################02.无root权限安装singularity#####################  
 ##############Installing singularity without root privileges#########
