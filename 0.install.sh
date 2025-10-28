@@ -5,6 +5,7 @@
 
 #####################01.数据下载与解压  #####################
 ###############Data download and decompression##############
+```bash
 #下载，解压，删除压缩包 Download, decompress, and delete the compressed package
 wget -c  -O /data6/zhangtianyuan/Pipeline/EasyGenome/data.tar.gz ftp://download.nmdc.cn/Easygenome/data.tar.gz   #下载测试数据到指定目录，注意修改/data6/zhangtianyuan/Pipeline/EasyGenome/为本服务器上的目录 #Download test data to the specified directory, please make sure to modify/data6/zhangtianyuan/Pipeline/EasyGenome/to the directory on this server
 tar -zxvf data.tar.gz #解压目录 Unzip directory
@@ -17,10 +18,11 @@ rm input.tar.gz #删除压缩包 Delete compressed package
 wget -c -O /data6/zhangtianyuan/Pipeline/EasyGenome/ ftp://download.nmdc.cn/Easygenome/Public.tar.gz #下载软件、数据库 Download software and database 
 tar -zxvf Public.tar.gz #解压目录 Unzip directory
 rm Public.tar.gz  #删除压缩包 Delete compressed package
-
+```
 
 #####################02.无root权限安装singularity#####################  
 ##############Installing singularity without root privileges#########
+```bash
 #下载GO并安装  Download GO and install it
 #进到官网下载最新Linux版本安装，官网：https://go.dev/dl/在服务器上用wget工具下载或者手动进官网下载再传到服务器上都可
 wget  https://go.dev/dl/go1.25.3.linux-amd64.tar.gz #下载软件压缩包Download the software compressed package
@@ -52,10 +54,11 @@ apt-get install libseccomp-dev，
 cd /opt/soft/singularity-ce-4.3.4/builddir #进builddir目录  Enter the builddir directory 
 make #编译 compile
 make install  #安装 Install
- 
+```
  
 #####################03.使用Root安装singularity##################
 ####################Install singularity using Root##############
+```bash
 #注意：如果上述02步骤无法安装，则使用本步骤
 #NOTICE:If the above step 02 cannot be installed, use this step
 
@@ -93,6 +96,6 @@ cd  singularity-ce-4.3.4 #进到软件目录  Enter the software directory
 	./mconfig && make -C builddir   #生成配置文件	Generate configuration file
 	    	sudo make -C builddir install	#安装软件	install the package
 
-
+```
 
 		
