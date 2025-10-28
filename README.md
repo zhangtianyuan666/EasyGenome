@@ -129,13 +129,16 @@ cd  singularity-ce-4.3.4 #进到软件目录  Enter the software directory
 Setup the work directory(wd), and  directory(db), then run each line by click run in top right corner
 
 # Example dataset (示例数据)
-Public目录包含了数据库，软件，镜像和脚本 
+Public目录包含了数据库，软件，镜像和脚本
+
 The Public directory contains databases, software, container images, and scripts.
 
 input目录存放比较基因组和泛基因组分析的示例数据  
+
 The input directory stores example data for comparative genomics and pan-genome analysis.
 
 data目录存放测试数据，数据来源于Pseudomonas sp. KK18 (PRJNA1079050);其中, SRR32313567.nanopore.fastq.gz为纳米孔长读长测序数据;SRR32313567_R1.fastq.gz和SRR32313567_R2.fastq.gz为短读长测序数据    
+
 The data directory contains test data sourced from Pseudomonas sp. KK18 (PRJNA1079050).  SRR32313567.nanopore.fastq.gz is Nanopore long-read data. SRR32313567_R1.fastq.gz and SRR32313567_R2.fastq.gz are short-read data.
 
 # FAQ (常见问题)
