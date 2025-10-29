@@ -449,6 +449,10 @@
   
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/minimap2_2.24.sif minimap2   -ax asm5 --eqx ref.fasta target.fasta |    singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/samtools_1.17.sif samtools view -bS  >out.bam
   singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/syri_v1.71.sif  syri -c out.sam -r ref.fasta -q target.fasta -k -F B 
+  echo -e "#file\tname\ttags">genomes.txt
+  echo -e "ref.fasta\tctg1\tlw:1.5">>genomes.txt
+  echo -e "target.fasta\tctg1\tlw:1.5">>genomes.txt
+  /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Software/plotsr --sr syri.out --genomes genomes.txt     -o output_plot.png
   cd ..
 
 
