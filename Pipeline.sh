@@ -71,7 +71,7 @@
   
   # 若仅有Long-read数据，则使用该命令进行拼接 (For Long-read Only data)
   # 使用flye拼接基因组 Using Flye to assembly Genomes
-   /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/flye_2.9.2.sif flye --nano-raw ../01.cleandata/SRR32313567.filtered.fastq --out-dir flye --threads 40 --iterations 5
+   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/flye_2.9.2.sif flye --nano-raw ../01.cleandata/SRR32313567.filtered.fastq --out-dir flye --threads 40 --iterations 5
   # 使用racon对拼接结果进行矫正  Correct the draft genome using racon
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/minimap2_2.24.sif minimap2 -d ref1.mmi flye/assembly.fasta
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/minimap2_2.24.sif minimap2 -ax map-ont -t 40 ref1.mmi ../01.cleandata/SRR32313567.filtered.fastq > map1.sam
@@ -156,7 +156,7 @@
   paste GCstat.xls aln2_2kbin.xls |awk '{print $1":"$2"-"$3"\t"$4"\t"$10}' >aln2_GC_depth.xls
   paste GCstat.xls aln3_2kbin.xls |awk '{print $1":"$2"-"$3"\t"$4"\t"$10}' >aln3_GC_depth.xls
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/plot1.sif Rscript /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/GC_depth.r aln2_GC_depth.xls aln2_GC_depth
-  singularity exec -B  /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/plot1.sif Rscript /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/GC_depth.r aln3_GC_depth.xls aln3_GC_depth
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/plot1.sif Rscript /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/GC_depth.r aln3_GC_depth.xls aln3_GC_depth
   cd ../
 
 
@@ -274,7 +274,7 @@
   singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/eggnog-mapper_2.1.9.sif hmmscan --domtblout cazy_tmp_hmm.xls --cpu 40 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Database/cazy/dbCAN.txt ../../03.anno/prokka_out/SRR32313567.faa
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/python39pandas_pexpect_Bio_PromPredict_r.sif   python /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/hmmscan-parser.py cazy_tmp_hmm.xls cazy_stringent_hmm.xls  1e-18  0.35
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/python39pandas_pexpect_Bio_PromPredict_r.sif python /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/get_cazy.py /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Database/cazy/domin_type.txt cazy_stringent_hmm.xls cazy.xls cazy_class_stat.xls
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/plot1.sif Rscript /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/CAZY_plot.R  cazy_class_stat.xls
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/plot1.sif Rscript /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/CAZY_plot.R  cazy_class_stat.xls
   cd ../
   
   # tcdb注释及作图 tcdb annotation and visualization
@@ -282,7 +282,7 @@
   /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Software/diamond blastp --evalue 1e-05 --max-target-seqs 1 --db /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Database/tcdb/tcdb.fa.dmnd --query ../../03.anno/prokka_out/SRR32313567.faa --threads 40 --outfmt 6 'qseqid' 'sseqid' 'pident' 'qcovhsp' 'length' 'mismatch' 'gapopen' 'qstart' 'qend' 'sstart' 'send' 'evalue' 'bitscore' 'stitle' --out tcdb_blast.xls
   sed -i '1i#qseqid\tsseqid\tpident\tqcovhsp\tlength\tmismatch\tgapopen\tqstart\tqend\tsstart\tsend\tevalue\tbitscore\tstitle' tcdb_blast.xls
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/python39pandas_pexpect_Bio_PromPredict_r.sif python /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/get_tcdb.py tcdb_blast.xls tcdb.xls
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/plot1.sif Rscript /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/TCDB_plot.R  tcdb.xls
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/plot1.sif Rscript /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/TCDB_plot.R  tcdb.xls
   cd ../
   
   # phi注释 phi annotation
@@ -295,8 +295,8 @@
   # card注释 card annotation
   mkdir card;cd card
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/python39pandas_pexpect_Bio_PromPredict_r.sif  python /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/ch_format_fasta.py ../../03.anno/prokka_out/*.faa tmp.SRR32313567.faa
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/rgi.sif rgi load --card_json /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Database/card/card.json --local 
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/rgi.sif rgi main -i tmp.SRR32313567.faa -o SRR32313567.rgi -t protein -a BLAST -n 16 --clean --local --include_loose
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/rgi.sif rgi load --card_json /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Database/card/card.json --local 
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/rgi.sif rgi main -i tmp.SRR32313567.faa -o SRR32313567.rgi -t protein -a BLAST -n 16 --clean --local --include_loose
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/python39pandas_pexpect_Bio_PromPredict_r.sif python /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/replace_empty.py SRR32313567.rgi.txt card_rgi.xls
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/python39pandas_pexpect_Bio_PromPredict_r.sif python /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/get_card.py card_rgi.xls card.xls
   
@@ -354,17 +354,17 @@
   cat ../02.assembly/aln3_2kbin.xls|cut -f 1 |uniq # 显示序列id，选取想要绘制圈图的序列替换下面脚本中的1_pilon_pilon进行后续的圈图绘制，流程中使用画图序列为1_pilon_pilon  Display the sequence IDs, then select the target sequence intended for circos plotting and replace 1_pilon_pilon in the following script accordingly. In this workflow, the sequence used for figure generation is 1_pilon_pilon
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/python39pandas_pexpect_Bio_PromPredict_r.sif python /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/first.py ../02.assembly/GCstat.xls tmp_GCstat.xls '1_pilon_pilon'
   less ../03.anno/prokka_out/SRR32313567.gff|awk 'NF>2'|sed -E 's/gnl\|Bacteria\|ctg_([0-9]+)/\1_pilon_pilon/g' > SRR32313567.gff
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/plot1.sif Rscript /data6/zhangtianyuan/Pipeline/Train_bac_genome/Train-Bacteria-genome/script/circle_plot.r SRR32313567 ./ 2000 SRR32313567.gff ../02.assembly/aln3_2kbin.xls ../02.assembly/aln3_depth.xls ../02.assembly/aln2_2kbin.xls ../02.assembly/aln2_depth.xls tmp_GCstat.xls '1_pilon_pilon'
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/plot1.sif Rscript /data6/zhangtianyuan/Pipeline/Train_bac_genome/Train-Bacteria-genome/script/circle_plot.r SRR32313567 ./ 2000 SRR32313567.gff ../02.assembly/aln3_2kbin.xls ../02.assembly/aln3_depth.xls ../02.assembly/aln2_2kbin.xls ../02.assembly/aln2_depth.xls tmp_GCstat.xls '1_pilon_pilon'
   
   # 如果仅有三代数据（无二代数据)，则使用该流程绘制圈图 If there is only third-generation data (no second-generation data), use this process to draw a circle chart
   # 纯三代圈图绘制  three-generation-data-Only circle diagram drawing
   less ../03.anno/prokka_out/SRR32313567.gff|awk 'NF>2'|sed -E 's/gnl\|Bacteria\|ctg_([0-9]+)/\1_pilon_pilon/g' > SRR32313567_long-read.gff
-   singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/plot1.sif Rscript /data6/zhangtianyuan/Pipeline/Train_bac_genome/Train-Bacteria-genome/script/circle_plot_only_long.r SRR32313567 ./ 2000 SRR32313567_long-read.gff  ../02.assembly/aln3_2kbin.xls ../02.assembly/aln3_depth.xls tmp_GCstat.xls '1_pilon_pilon'
+   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/plot1.sif Rscript /data6/zhangtianyuan/Pipeline/Train_bac_genome/Train-Bacteria-genome/script/circle_plot_only_long.r SRR32313567 ./ 2000 SRR32313567_long-read.gff  ../02.assembly/aln3_2kbin.xls ../02.assembly/aln3_depth.xls tmp_GCstat.xls '1_pilon_pilon'
   
   # 绘制简易圈图 Draw a simple circle diagram
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/cgview_2.0.3.sif perl /usr/bin/cgview_xml_builder.pl -sequence ../03.anno/prokka_out/SRR32313567.gbk -gc_content T -gc_skew T -size large-v2 -tick_density 0.05 -draw_divider_rings T -custom showBorder=false title=Example map titleFontSize=200 -output map.xml 
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/cgview_2.0.3.sif  java -jar /usr/bin/cgview.jar -i map.xml -o map.png 
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/cgview_2.0.3.sif  java -jar /usr/bin/cgview.jar -i map.xml -o map.pdf
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/cgview_2.0.3.sif perl /usr/bin/cgview_xml_builder.pl -sequence ../03.anno/prokka_out/SRR32313567.gbk -gc_content T -gc_skew T -size large-v2 -tick_density 0.05 -draw_divider_rings T -custom showBorder=false title=Example map titleFontSize=200 -output map.xml 
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/cgview_2.0.3.sif  java -jar /usr/bin/cgview.jar -i map.xml -o map.png 
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/cgview_2.0.3.sif  java -jar /usr/bin/cgview.jar -i map.xml -o map.pdf
   cd ../
 
 
@@ -387,11 +387,11 @@
   
   ls pep/*.faa|awk -F "[./]" '{print "/data6/zhangtianyuan/Pipeline/EasyGenome/Public/Software/orthomclSoftware-v2.0.9/bin/orthomclAdjustFasta "$2" "$0" 1;mv "$2".fasta pep_dir"}' > AdjustFasta.sh  #生成改名脚本 Generate rename script
   sh +x AdjustFasta.sh    #运行改名脚本 Run the rename script
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/orthofinder_v3.1.sif orthofinder  -og -f $PWD/pep_dir -t 20 -a 10 -o $PWD/ortho   # 运行orthofinder Run orthofinder
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/orthofinder_v3.1.sif orthofinder  -og -f $PWD/pep_dir -t 20 -a 10 -o $PWD/ortho   # 运行orthofinder Run orthofinder
   cd ../  
   #venn 同源基因组基因韦恩图绘制 Drawing of Venn diagram of homologous genome genes
   mkdir venn;cd venn
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/plot1.sif Rscript /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/venn.R ../ortho/ortho/*/Orthogroups/Orthogroups.GeneCount.tsv Pchl,Pcic,Pent,SRR32313567
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/plot1.sif Rscript /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/venn.R ../ortho/ortho/*/Orthogroups/Orthogroups.GeneCount.tsv Pchl,Pcic,Pent,SRR32313567
   cd ../
   # jcvi共线性分析 JCVI collinearity analysis
   mkdir jcvi;cd jcvi
@@ -399,13 +399,13 @@
   # 提取gff中CDS的信息 Extract CDS information from gff
   mkdir input ;cd input
   # 将核酸序列中的cds提取出来，如果近缘下载的是cds可以忽略近缘的提取，直接将近缘的cds序列cp  到当前分析目录即可  Extract the cds from the nucleic acid sequence. If the closest relative is the cds downloaded, you can ignore the extraction of the closest relative and directly cp the cds sequence of the closest relative to the current analysis directory.
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.formats.gff bed --type=CDS  --key=ID ../../../../input/jcvi/Pchl.gff  -o Pchl.bed
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.formats.bed uniq Pchl.bed
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.formats.gff bed --type=CDS --key=ID ../../../../input/jcvi/Pcic.gff  -o Pcic.bed
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.formats.bed uniq Pcic.bed
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.formats.gff bed --type=CDS  --key=ID ../../../../input/jcvi/Pchl.gff  -o Pchl.bed
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.formats.bed uniq Pchl.bed
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.formats.gff bed --type=CDS --key=ID ../../../../input/jcvi/Pcic.gff  -o Pcic.bed
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.formats.bed uniq Pcic.bed
   
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.formats.gff bed --type=CDS  --key=ID  ../../../03.anno/prokka_out/SRR32313567.gff  -o SRR32313567.bed
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.formats.bed uniq SRR32313567.bed 
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.formats.gff bed --type=CDS  --key=ID  ../../../03.anno/prokka_out/SRR32313567.gff  -o SRR32313567.bed
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.formats.bed uniq SRR32313567.bed 
   
   # 提取cds序列并去除cds的描述信息，只保留id，不然画图会报错，Extract the cds sequence and remove the description information of cds, leaving only the id, otherwise the drawing will give an error
   /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Software/seqkit grep -f <(cut -f 4 Pchl.uniq.bed) ../../../../input/jcvi/Pchl.cds |/data6/zhangtianyuan/Pipeline/EasyGenome/Public/Software/seqkit seq  -i  > Pchl.cds
@@ -416,10 +416,10 @@
   ln -s input/Pcic.uniq.bed Pcic.bed
   ln -s input/SRR32313567.uniq.bed SRR32313567.bed
   ln -s input/*cds .
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.compara.catalog ortholog --dbtype nucl  Pchl SRR32313567  --no_strip_names
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.compara.catalog ortholog --dbtype nucl SRR32313567 Pcic --no_strip_names 
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.compara.synteny screen --simple Pchl.SRR32313567.anchors Pchl.SRR32313567.anchors.new
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.compara.synteny screen --simple SRR32313567.Pcic.anchors SRR32313567.Pcic.anchors.new
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.compara.catalog ortholog --dbtype nucl  Pchl SRR32313567  --no_strip_names
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.compara.catalog ortholog --dbtype nucl SRR32313567 Pcic --no_strip_names 
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.compara.synteny screen --simple Pchl.SRR32313567.anchors Pchl.SRR32313567.anchors.new
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.compara.synteny screen --simple SRR32313567.Pcic.anchors SRR32313567.Pcic.anchors.new
   echo "gnl|Bacteria|ctg_1" > seqids ## Pcic
   echo "gnl|Bacteria|ctg_1" >> seqids # SRR32313567
   echo "gnl|Bacteria|ctg_1" >> seqids # Pchl
@@ -430,18 +430,18 @@
   echo "# edges" >> layout
   echo "e,0,1,Pchl.SRR32313567.anchors.simple" >> layout
   echo "e,1,2,SRR32313567.Pcic.anchors.simple" >> layout
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.graphics.karyotype seqids layout --format=pdf  --figsize=15x10
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.graphics.karyotype seqids layout --format=pdf  --figsize=15x10
   cd ../
   
   # gtdbtk系统发育学分类与注释 gtdbtk phylogenetic classification and annotation
   mkdir gtdbtk;cd gtdbtk
   cp ../../03.anno/prokka_out/SRR32313567.fna  ../../../input/genome
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/gtdbtk_2.3.0_r214.sif gtdbtk classify_wf --genome_dir ../../../input/genome  --out_dir output/classify_wf --extension fna --prefix bac --cpu 40 --skip_ani_screen
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/gtdbtk_2.3.0_r214.sif gtdbtk classify_wf --genome_dir ../../../input/genome  --out_dir output/classify_wf --extension fna --prefix bac --cpu 40 --skip_ani_screen
   cd ../
  
   # pyani平均核苷酸相似度分析 Pyani average nucleotide similarity analysis
   mkdir pyani;cd pyani
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/pyani.sif average_nucleotide_identity.py -i ../../../input/genome   -o output -m ANIm -g
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/pyani.sif average_nucleotide_identity.py -i ../../../input/genome   -o output -m ANIm -g
   cd ..
   
   # syri 基因组共线性分析 Genome collinearity analysis
@@ -452,7 +452,7 @@
   awk 'BEGIN{seq=0} /^>/{seq++; if(seq>1) exit; print ">ctg1"; next} {print}' /data6/zhangtianyuan/Pipeline/EasyGenome/ref_genome/GCA_000412675.fna >ref.fasta
   
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/minimap2_2.24.sif minimap2   -ax asm5 --eqx ref.fasta target.fasta |    singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/samtools_1.17.sif samtools view -bS  >out.bam
-  singularity exec -B /data6 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/syri_v1.71.sif  syri -c out.sam -r ref.fasta -q target.fasta -k -F B 
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/syri_v1.71.sif  syri -c out.sam -r ref.fasta -q target.fasta -k -F B 
   # 暂时不要运行
   #echo -e "#file\tname\ttags">genomes.txt  
   #echo -e "ref.fasta\tctg1\tlw:1.5">>genomes.txt
