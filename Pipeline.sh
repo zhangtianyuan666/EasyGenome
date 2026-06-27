@@ -323,12 +323,12 @@
   
   # 信号肽预测 Signal peptide prediction
   mkdir SignalP;cd SignalP
-  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/sravankrishna47_signalp-fast.sif signalp6 --fastafile ../../03.anno/prokka_out/SRR32313567.fna  --organism other --output_dir  ./ --format txt --mode fast
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/sravankrishna47_signalp-fast.sif signalp6 --fastafile ../../03.anno/prokka_out/SRR32313567.faa  --organism other --output_dir  ./ --format txt --mode fast
   cd ../
   
   # 跨膜蛋白预测 Transmembrane protein prediction
   mkdir  tmhmm;cd  tmhmm
-  /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Software/tmhmm-2.0c/bin/tmhmm --short < ../../03.anno/prokka_out/SRR32313567.fna > tmhmm.out  2>tmhmm.err
+  /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Software/tmhmm-2.0c/bin/tmhmm --short < ../../03.anno/prokka_out/SRR32313567.faa > tmhmm.out  2>tmhmm.err
   cd ..
   
   # Ⅲ 型分泌系统效应蛋白注释 Annotation of type III secretion system effector proteins
