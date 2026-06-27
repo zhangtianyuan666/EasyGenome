@@ -11,11 +11,11 @@ wget -c  -O /data6/zhangtianyuan/Pipeline/EasyGenome/data.tar.gz ftp://download.
 tar -zxvf data.tar.gz #解压目录 Unzip directory
 rm data.tar.gz #删除压缩包 Delete compressed package
 
-wget -c -O /data6/zhangtianyuan/Pipeline/EasyGenome/ ftp://download.nmdc.cn/Easygenome/input.tar.gz #下载准备数据、示例数据 Download preparation data and sample data 
+wget -c -O /data6/zhangtianyuan/Pipeline/EasyGenome/input.tar.gz ftp://download.nmdc.cn/Easygenome/input.tar.gz #下载准备数据、示例数据 Download preparation data and sample data 
 tar -zxvf input.tar.gz #解压目录 Unzip directory
 rm input.tar.gz #删除压缩包 Delete compressed package
 
-wget -c -O /data6/zhangtianyuan/Pipeline/EasyGenome/ ftp://download.nmdc.cn/Easygenome/Public.tar.gz #下载软件、数据库 Download software and database 
+wget -c -O /data6/zhangtianyuan/Pipeline/EasyGenome/Public.tar.gz ftp://download.nmdc.cn/Easygenome/Public.tar.gz #下载软件、数据库 Download software and database 
 tar -zxvf Public.tar.gz #解压目录 Unzip directory
 rm Public.tar.gz  #删除压缩包 Delete compressed package
 
