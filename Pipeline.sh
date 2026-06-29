@@ -80,8 +80,9 @@
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/canu-racon_2.0.sif racon -t 40 ../01.cleandata/SRR32313567.filtered.fastq map1.sam flye/assembly.fasta > flye/racon1.fa
   
   # 将目标结果进行链接，进行后续分析 Link the target assembly results for subsequent analysis
-  # link assembly_result   下面2个命令运行1个 The following two commands run 1
+  # link assembly_result   下面3个命令运行1个 The following three commands run 1
   ln -s unicycler_out/assembly.fasta input.fa
+  ln -s unicycler_short/assembly.fasta input.fa
   ln -s flye/racon1.fa input.fa
 
   # 脚本里面是有两轮pilon纠错，第一轮输出是genome.fasta，第二轮是assembly.fasta，这样纠错完组装文件染色体id是1_pilon_pilon There are two rounds of Pilon polishing in this script. The first round outputs genome.fasta, and the second round outputs assembly.fasta. After both polishing steps are completed, the final chromosome ID in the assembled file becomes 1_pilon_pilon
@@ -401,6 +402,7 @@
   # 提取gff中CDS的信息 Extract CDS information from gff
   mkdir input ;cd input
   # 将核酸序列中的cds提取出来，如果近缘下载的是cds可以忽略近缘的提取，直接将近缘的cds序列cp  到当前分析目录即可  Extract the cds from the nucleic acid sequence. If the closest relative is the cds downloaded, you can ignore the extraction of the closest relative and directly cp the cds sequence of the closest relative to the current analysis directory.
+  # 提取命令：gffread genome.gff  -g genome.fna  -x species.cds
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.formats.gff bed --type=CDS  --key=ID ../../../../input/jcvi/Pchl.gff  -o Pchl.bed
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.formats.bed uniq Pchl.bed
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/jcvi_w_last_latest.sif python -m jcvi.formats.gff bed --type=CDS --key=ID ../../../../input/jcvi/Pcic.gff  -o Pcic.bed
@@ -437,8 +439,8 @@
   
   # gtdbtk系统发育学分类与注释 gtdbtk phylogenetic classification and annotation
   mkdir gtdbtk;cd gtdbtk
-  cp ../../03.anno/prokka_out/SRR32313567.fna  ../../../input/genome
-  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/gtdbtk_2.3.0_r214.sif gtdbtk classify_wf --genome_dir ../../../input/genome  --out_dir output/classify_wf --extension fna --prefix bac --cpu 40 --skip_ani_screen
+  cp ../../03.anno/prokka_out/SRR32313567.fna  ../../../input/genome/SRR32313567.fa
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/gtdbtk_2.3.0_r214.sif gtdbtk classify_wf --genome_dir ../../../input/genome  --out_dir output/classify_wf --extension fa --prefix bac --cpu 40 --skip_ani_screen
   cd ../
  
   # pyani平均核苷酸相似度分析 Pyani average nucleotide similarity analysis
@@ -451,7 +453,7 @@
   
   # 提取基因组 Extract genome
   awk 'BEGIN{seq=0} /^>/{seq++; if(seq>1) exit; print ">ctg1"; next} {print}'   ../../03.anno/prokka_out/SRR32313567.fna >target.fasta
-  awk 'BEGIN{seq=0} /^>/{seq++; if(seq>1) exit; print ">ctg1"; next} {print}' /data6/zhangtianyuan/Pipeline/EasyGenome/input/genome/Pput.fna >ref.fasta
+  awk 'BEGIN{seq=0} /^>/{seq++; if(seq>1) exit; print ">ctg1"; next} {print}' /data6/zhangtianyuan/Pipeline/EasyGenome/input/genome/Pput.fa >ref.fasta
   
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/minimap2_2.24.sif minimap2   -ax asm5 --eqx ref.fasta target.fasta |    singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/samtools_1.17.sif samtools view -bS  >out.bam
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/syri_v1.71.sif  syri -c out.bam -r ref.fasta -q target.fasta -k -F B 
