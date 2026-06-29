@@ -481,9 +481,7 @@
 
    # 备选方案：如果没有GFF文件，需要进行注释，参考下列文档
       # mkdir -p /data6/zhangtianyuan/Pipeline/EasyGenome/SRR32313567/07.roary;cd /data6/zhangtianyuan/Pipeline/EasyGenome/SRR32313567/07.roary
-      #复制注释的gff文件到此目录
-      #cp ../03.anno/prokka_out/*gff .
-      
+
       #对近缘基因组做prokka注释
       # 设置路径
       #FASTA_DIR="/data6/zhangtianyuan/Pipeline/EasyGenome/ref_genome/"
@@ -517,9 +515,10 @@
       #        --prefix "$sample" \
       #        "$fasta"
       #done
-    
-      #把近缘基因组的prokka注释得到的gff文件都复制到/data6/zhangtianyuan/Pipeline/EasyGenome/SRR32313567/03.anno/roary目录
-      #singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/roary_v3.9.1_addlibbz2.sif roary  --mafft -p 8  *.gff 
+      #复制注释的gff文件到此目录
+      #cp ../03.anno/prokka_out/*gff  ./prokka_out
+
+      #singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/roary_v3.9.1_addlibbz2.sif roary  --mafft -p 8  ./prokka_out/*.gff 
       #结果统计图绘制 Result statistical graph drawing
       singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/python39pandas_pexpect_Bio_PromPredict_r.sif python /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/roary_pie.py
       singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/python39pandas_pexpect_Bio_PromPredict_r.sif python /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/stat_roary.py
