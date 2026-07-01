@@ -173,7 +173,7 @@
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/python39pandas_pexpect_Bio_PromPredict_r.sif python3 /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/stat_prokka.py prokka_out/SRR32313567.gff prokka_out/sturcAnno.stat.xls
   
   # 使用Bakta注释 和prokka二选一即可，本示例用的是prokka的注释结果 You can choose between Bakta annotation and Prokka. This example uses the annotation result of Prokka
-  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/bakta_v1.9.3.sif  bakta  --db /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Database/baketa/db-light  --verbose --threads 16 ../02.assembly/assemble/assembly.fasta --output bakta_out 
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/bakta_v1.9.3.sif  bakta  --db /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Database/bakta/db-light  --verbose --threads 16 ../02.assembly/assemble/assembly.fasta --output bakta_out 
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/python39pandas_pexpect_Bio_PromPredict_r.sif  python /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/stat_bakta.py  bakta_out/assembly.gff3 bakta_out/sturcAnno.stat.xls
   
   
