@@ -291,6 +291,8 @@
   # phi注释 phi annotation
   mkdir phi;cd phi
   /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Software/ncbi-blast-2.17.0+/bin/blastp -evalue 1e-05 -max_target_seqs 1 -db /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Database/phi/phi-base.fa -query ../../03.anno/prokka_out/SRR32313567.faa -num_threads 40 -outfmt '6 qseqid sseqid pident qcovs length mismatch gapopen qstart qend sstart send evalue bitscore stitle' -out phi_blast.xls
+  # or /home2/liyilin/project/bacterial/ccs/Public/Software/diamond blastp --evalue 1e-05 --max-target-seqs 1 --db /home2/liyilin/project/bacterial/ccs/Public/Database/phi/phi-base.fas --query ../../03.anno/prokka_out/SRR32313567.faa --threads 40 --outfmt 6 'qseqid' 'sseqid' 'pident' 'qcovhsp' 'length' 'mismatch' 'gapopen' 'qstart' 'qend' 'sstart' 'send' 'evalue' 'bitscore' 'stitle' --out phi_blast.xls
+  
   sed -i '1i#qseqid\tsseqid\tpident\tqcovs\tlength\tmismatch\tgapopen\tqstart\tqend\tsstart\tsend\tevalue\tbitscore\tstitle' phi_blast.xls
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/python39pandas_pexpect_Bio_PromPredict_r.sif  python /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/phi.py -i phi_blast.xls -o phi.xls
   cd ../
