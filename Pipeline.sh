@@ -179,7 +179,7 @@
   
   # 假基因注释 Pseudogene annotation
   mkdir pseudo_gene;cd pseudo_gene
-  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/pseudofinder-master.sif python /opt/pseudofinder-master/pseudofinder.py annotate -g ../prokka_out/SRR32313567.gbk --outprefix SRR32313567 -di -skpdb --threads SRR32313567 -db /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Database/nr/B_A_V_nr.fa.dmnd 
+  singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/pseudofinder-master.sif python /opt/pseudofinder-master/pseudofinder.py annotate -g ../prokka_out/SRR32313567.gbk --outprefix SRR32313567 -di -skpdb --threads 16 -db /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Database/nr/B_A_V_nr.fa.dmnd 
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/python39pandas_pexpect_Bio_PromPredict_r.sif python /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/fasta_stat.py -all SRR32313567_pseudos.fasta --out SRR32313567.ppseq.stat
   singularity exec -B /data6/ /data6/zhangtianyuan/Pipeline/EasyGenome/Public/Singularity/python39pandas_pexpect_Bio_PromPredict_r.sif python /data6/zhangtianyuan/Pipeline/EasyGenome/Public/script/all_stat.py 
   cd ../
