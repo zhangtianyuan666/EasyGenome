@@ -83,8 +83,3 @@
 | module4  | VFDB       | 2024-11-14 00:00:00 |
 | module4  | ICE        | 2015-01-16 00:00:00 |
 | module6  | gtdbtk     | 2024-01-19 00:00:00 |
-
-
-## 3. Download
-
-[Download the original Excel file](data/software_database.xlsx)
