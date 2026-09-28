@@ -1,8 +1,8 @@
-# Bioinformatics Analysis Resources
+# Easygenome Analysis Resources
 
 ## 1. Software
 
-本研究使用的软件及其主要用途如下：
+本流程使用的软件及其主要用途如下：
 
 | module   | software      | 版本参数    | Function                                                                         | 功能                                                        | Github                                          |
 |:---------|:--------------|:--------|:---------------------------------------------------------------------------------|:----------------------------------------------------------|:------------------------------------------------|
@@ -62,7 +62,7 @@
 
 ## 2. Databases
 
-本研究使用的数据库及其主要用途如下：
+本流程使用的数据库及其信息如下：
 
 | module   | database   | 版本参数                |
 |:---------|:-----------|:--------------------|
@@ -87,4 +87,4 @@
 
 ## 3. Download
 
-[Download the original Excel file](software_database.xlsx)
+[Download the original Excel file](data/software_database.xlsx)
