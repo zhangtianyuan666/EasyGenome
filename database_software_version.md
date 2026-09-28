@@ -4,7 +4,7 @@
 
 本流程使用的软件及其主要用途如下： The software used in this workflow and their primary applications are summarized below
 
-| module   | software      | 版本参数    | Function                                                                         | 功能                                                        | Github                                          |
+| module   | software      | 版本参数 Version| Function                                                                         | 功能                                                        | Github                                          |
 |:---------|:--------------|:--------|:---------------------------------------------------------------------------------|:----------------------------------------------------------|:------------------------------------------------|
 | module1  | FastP         | v0.23.2 | High-performance data filtering and preprocessing for FASTQ data                 | 数据过滤与预处理                                                  | https://github.com/OpenGene/fastp               |
 | module1  | kraken2       | v2.1.2  | Taxonomic classification for short- and long-read sequencing data                | 基于 k-mer 比对算法，对二代短读长、三代长读长测序数据进行高精度物种分类注释                 | https://github.com/DerrickWood/kraken2          |
@@ -71,7 +71,7 @@
     <tr style="text-align: right;">
       <th>module</th>
       <th>database</th>
-      <th>版本参数</th>
+      <th>版本参数Version</th>
     </tr>
   </thead>
   <tbody>
@@ -371,144 +371,144 @@
     <tr style="text-align: right;">
       <th>module</th>
       <th>R</th>
-      <th>用途（统计/绘图）</th>
+      <th>用途（统计/绘图）Purpose (Statistical Analysis/Visualization)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>module2</td>
       <td>ggplot2</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module3</td>
       <td>dplyr</td>
-      <td>统计</td>
+      <td>统计Statistical</td>
     </tr>
     <tr>
       <td>module3</td>
       <td>ggthemes</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module3</td>
       <td>svglite</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module3</td>
       <td>gridExtra</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module3</td>
       <td>ggstance</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module3</td>
       <td>UpSetR</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module3</td>
       <td>RColorBrewer</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module3</td>
       <td>svglite</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module4</td>
       <td>svglite</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module4</td>
       <td>RColorBrewer</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module4</td>
       <td>ggplot2</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module4</td>
       <td>stringr</td>
-      <td>统计</td>
+      <td>统计Statistical</td>
     </tr>
     <tr>
       <td>module4</td>
       <td>magrittr</td>
-      <td>统计</td>
+      <td>统计Statistical</td>
     </tr>
     <tr>
       <td>module4</td>
       <td>dplyr</td>
-      <td>统计</td>
+      <td>统计Statistical</td>
     </tr>
     <tr>
       <td>module5</td>
       <td>stringr</td>
-      <td>统计</td>
+      <td>统计Statistical</td>
     </tr>
     <tr>
       <td>module5</td>
       <td>circlize</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module5</td>
       <td>ComplexHeatmap</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module5</td>
       <td>grid</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module5</td>
       <td>svglite</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module6</td>
       <td>VennDiagram</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module6</td>
       <td>UpSetR</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module6</td>
       <td>RColorBrewer</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module6</td>
       <td>plyr</td>
-      <td>统计</td>
+      <td>统计Statistical</td>
     </tr>
     <tr>
       <td>module6</td>
       <td>svglite</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module7</td>
       <td>ggplot2</td>
-      <td>绘图</td>
+      <td>绘图Visualization</td>
     </tr>
     <tr>
       <td>module7</td>
       <td>reshape2</td>
-      <td>统计</td>
+      <td>统计Statistical</td>
     </tr>
   </tbody>
 </table>
