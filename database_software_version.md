@@ -1,4 +1,4 @@
-# Bioinformatics Analysis Resources
+# EasyGenome Analysis Resources
 
 ## 1. Software
 
