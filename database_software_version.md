@@ -78,27 +78,27 @@
     <tr>
       <td>module1</td>
       <td>kraken2</td>
-      <td>2025-10-15 00:00:00</td>
+      <td>2025-10-15</td>
     </tr>
     <tr>
       <td>module2</td>
       <td>busco</td>
-      <td>2024-11-14 00:00:00</td>
+      <td>2024-11-14</td>
     </tr>
     <tr>
       <td>module2</td>
       <td>checkm</td>
-      <td>2015-01-16 00:00:00</td>
+      <td>2015-01-16</td>
     </tr>
     <tr>
       <td>module3</td>
       <td>Bakta</td>
-      <td>2024-01-19 00:00:00</td>
+      <td>2024-01-19</td>
     </tr>
     <tr>
       <td>module3</td>
       <td>nr_cluster</td>
-      <td>2026-01-05 00:00:00</td>
+      <td>2026-01-05</td>
     </tr>
     <tr>
       <td>module3</td>
@@ -108,12 +108,12 @@
     <tr>
       <td>module3</td>
       <td>Uniprot</td>
-      <td>2025-10-15 00:00:00</td>
+      <td>2025-10-15</td>
     </tr>
     <tr>
       <td>module3</td>
       <td>tigerfam</td>
-      <td>2025-08-06 00:00:00</td>
+      <td>2025-08-06</td>
     </tr>
     <tr>
       <td>module3</td>
@@ -123,17 +123,17 @@
     <tr>
       <td>module4</td>
       <td>cazy</td>
-      <td>2025-08-26 00:00:00</td>
+      <td>2025-08-26</td>
     </tr>
     <tr>
       <td>module4</td>
       <td>tcdb</td>
-      <td>2025-08-06 00:00:00</td>
+      <td>2025-08-06</td>
     </tr>
     <tr>
       <td>module4</td>
       <td>phi</td>
-      <td>2025-05-01 00:00:00</td>
+      <td>2025-05-01</td>
     </tr>
     <tr>
       <td>module4</td>
@@ -143,22 +143,22 @@
     <tr>
       <td>module4</td>
       <td>cyped</td>
-      <td>2025-10-15 00:00:00</td>
+      <td>2025-10-15</td>
     </tr>
     <tr>
       <td>module4</td>
       <td>VFDB</td>
-      <td>2024-11-14 00:00:00</td>
+      <td>2024-11-14</td>
     </tr>
     <tr>
       <td>module4</td>
       <td>ICE</td>
-      <td>2015-01-16 00:00:00</td>
+      <td>2015-01-16</td>
     </tr>
     <tr>
       <td>module6</td>
       <td>gtdbtk</td>
-      <td>2024-01-19 00:00:00</td>
+      <td>2024-01-19</td>
     </tr>
   </tbody>
 </table>
